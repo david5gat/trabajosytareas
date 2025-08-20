@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="login">
+        <div class="title">
+            <h2>{{"Login" | titlecase}}</h2>
+        </div>
+
+        <div class="correo">
+         <p-floatlabel variant="on">
+             <input pInputText id="Correo"  [(ngModel)]="value1" autocomplete="off" />
+             <label for="Correo">{{"Correo" | titlecase}}</label>
+         </p-floatlabel>
+         <div class="alert">
+             <h4 *ngIf="loginBad" style="color: red;">correo incorrecto</h4>
+         </div>
+        </div>
+        
+        <div class="button-send">
+            <form [formGroup]="exampleForm" (ngSubmit)="login()" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-1">
+                <button pButton type="submit"><span pButtonLabel>{{"Ingresar" | titlecase}}</span></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
