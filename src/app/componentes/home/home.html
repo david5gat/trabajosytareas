@@ -1,11 +1,136 @@
-<div class="container">
-    <div class="proyecto">
-        <div class="card">
-        <p-card header="Simple Card">
-        <p class="m-0">
-            Lorem ipsum dolor sit amet...
-        </p>
-        </p-card>
+    <app-nabvar></app-nabvar>
+    <div class="container">
+        <div class="proyecto" *ngFor="let trabajo of TareasYTrabajos">
+            <div class="card">
+                <div class="Id">
+                    <h4>{{"Id:" | titlecase}} {{trabajo.id}}</h4>
+                </div>
+                <h4>{{"titulo de tarea:" | titlecase}}</h4>
+                <div class="title">
+                    <p> <br>{{trabajo.title}}</p>
+                </div>
+            <div class="flex items-center">
+            <p-checkbox inputId="Completado" name="Completado" [disabled]="true" [(ngModel)]="trabajo.completed" [binary]="true"/>
+            <label for="Completado" class="ml-2"> Completado </label>
+            </div>
+
+            <div class="botones" *ngIf="trabajo.title?.toLowerCase() !== 'crear nueva tarea'">
+                <div class="boton-eliminar">
+                    <p-button  label="Editar" (onClick)="editar(trabajo)" severity="secondary" />
+                </div>
+                <div class="boton-editar">
+                    <p-button  label="Eliminar" (onClick)="inicarEliminar(trabajo)" severity="danger"  />
+                </div>
+                </div>
+
+                <div class="botones" *ngIf="trabajo.title?.toLowerCase() === 'crear nueva tarea'">
+                <div class="boton-crear">
+                    <p-button  label="Crear" (onClick)="crearTarea(trabajo)" severity="danger"  />
+                </div>
+            </div>
+            </div>
+            
         </div>
     </div>
-</div>
+
+ <app-tarea-dialog 
+  [visible]="abrirEditar || abrirCrear || abrirEliminar"
+  [titulo]="abrirEditar ? 'Editar Tarea' : abrirCrear? 'Nueva Tarea': 'Eliminar Tarea'"
+  [tarea]="TareaSeleccion"
+  (onEliminar)="eliminarTarea($event)"
+  (onGuardar)="guardarCambios($event)"
+  (onCancelar)="cerrarDialog()">
+</app-tarea-dialog>
+
+
+    <!-- <p-dialog header="Editar Tarea" [modal]="true" [(visible)]="abrirEditar" [style]="{ width: '25rem' }">
+        <div *ngIf="TareaSeleccion" class="flex items-center gap-4 mb-4">
+            <label for="username" class="font-semibold w-24">{{"titulo de tarea" | titlecase}}</label>
+            <input pInputText id="username"  class="flex-auto" [(ngModel)]="TareaSeleccion.title" autocomplete="off" />
+            <div style="margin: 10%; margin-left: 130px; " class="flex items-center">
+            <p-checkbox inputId="Completado" name="Completado" [(ngModel)]="TareaSeleccion.completed"  [binary]="true"/>
+            <label for="Completado" class="ml-2"> Completado </label>
+            </div>
+        </div>
+        
+        
+        <div class="flex justify-end gap-2">
+            <p-button label="Cancelar" severity="secondary" (click)="abrirEditar = false" />
+            <p-button label="Guardar" (click)="guardar(TareaSeleccion.id)" />
+        </div>
+    </p-dialog>
+
+
+
+    <p-dialog header="Eliminar Tarea" [modal]="true" [(visible)]="abrirEliminar" [style]="{ width: '25rem' }">
+        <div *ngIf="TareaSeleccion" class="flex items-center gap-4 mb-4">
+            <label for="username" class="font-semibold w-24">{{"Estas Seguro de eliminar esta tarea?" | titlecase}}</label>        
+        </div>
+
+        <div class="flex justify-end gap-2">
+            <div class="botones-dialog" style="display: flex; justify-content: center; margin-top: 5%;">
+                <div class="cancelar" style="margin-right: 5%;">
+            <p-button label="Cancelar" severity="secondary" (click)="abrirEliminar = false" />
+            </div>
+            <div class="guarda">
+            <p-button label="Eliminar" (click)="eliminar(TareaSeleccion.id)" />
+            </div>
+            </div>
+        </div>
+    </p-dialog>
+
+    <p-dialog header="Editar Tarea" [modal]="true" [(visible)]="abrirEditar" [style]="{ width: '25rem' }">
+        <div *ngIf="TareaSeleccion" class="flex items-center gap-4 mb-4">
+            <label for="username" class="font-semibold w-24">{{"titulo de tarea" | titlecase}}</label>
+            <input pInputText id="username"  class="flex-auto" [(ngModel)]="TareaSeleccion.title" autocomplete="off" />
+            <div style="margin: 10%; margin-left: 130px; " class="flex items-center">
+            <p-checkbox inputId="Completado" name="Completado" [(ngModel)]="TareaSeleccion.completed"  [binary]="true"/>
+            <label for="Completado" class="ml-2"> Completado </label>
+            </div>
+        </div>
+        
+        
+        <div class="flex justify-end gap-2">
+            <div class="botones-dialog" style="display: flex; justify-content: center; ">
+                <div class="cancelar" style="margin-right: 5%;">
+            <p-button label="Cancelar" severity="secondary" (click)="abrirEditar = false" />
+            </div>
+                <div class="guarda">
+            <p-button label="Guardar" (click)="guardar(TareaSeleccion.id)" />
+            </div>
+            </div>
+        </div>
+    </p-dialog> -->
+
+
+    <!-- Dialog para crear una nueva Tarea -->
+
+    <!-- <p-dialog header="Crear Tarea" [modal]="true" [(visible)]="abrirCrear" [style]="{ width: '25rem' }"> -->
+        <!-- <span class="p-text-secondary block mb-8">{{"editar Tarea: " | titlecase}}</span> -->
+        <!-- <div *ngIf="TareaSeleccion" class="flex items-center gap-4 mb-4">
+            <div style="margin: 2%;" class="Id">
+                <label style="margin-right: 30%;" for="username" class="font-semibold w-24">{{"Id" | titlecase}}</label>
+                <input pInputText id="username"  class="flex-auto" [disabled]="true" [(ngModel)]="TareaSeleccion.id" autocomplete="off" />
+            </div>
+            <div style="margin: 2%;" class="titulo">
+                <label for="username" style="margin-right: 6%;" class="font-semibold w-24">{{"titulo de tarea" | titlecase}}</label>
+                <input pInputText id="username"  class="flex-auto" [(ngModel)]="TareaSeleccion.title" autocomplete="off" />
+            </div>
+            <div style="margin: 10%; margin-left: 130px; " class="flex items-center">
+              <p-checkbox inputId="Completado" [disabled]="true" name="Completado" [value]="false"  [binary]="true"/>
+              <label for="Completado" class="ml-2"> Completado </label>
+            </div>
+        </div>
+        
+        
+        <div class="flex justify-end gap-2">
+            <div class="botones-dialog" style="display: flex; justify-content: center; ">
+                <div class="cancelar" style="margin-right: 5%;">
+                    <p-button label="Cancelar"  severity="secondary" (click)="abrirCrear = false" />
+                </div>
+                <div class="guarda">
+                    <p-button label="Guardar" (click)="creaNtarea()" />
+                </div>
+            </div>
+        </div>
+    </p-dialog> -->

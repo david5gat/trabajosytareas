@@ -1,3 +1,54 @@
 .card{
-    margin: 2%;
+    margin: 1%;
+    width: 200px;
+    height: 300px;
+    display:-moz-grid-group;
+    padding: 20%;
+    gap:20px;
+    justify-items: center;
+    border-radius: 40px;
+    border: 1px solid rgb(255, 230, 0);
+    background-position: right;
+    // background-color: rgb(64, 64,64);
+    background-image: url("https://p4.wallpaperbetter.com/wallpaper/10/985/276/pattern-vector-dark-background-wallpaper-preview.jpg");
+    // https://img.freepik.com/vector-gratis/fondo-floral-ornamental-abstracto_52683-30015.jpg
+    h4{
+        margin: 0px !important;
+    }
+    p{
+        padding-right: 10%;
+        padding-left: 10%;
+    }
+    // position: relative;
 }
+.proyecto{
+    
+    display:inline-table;
+    margin: 1%;
+    width: 10px;
+}
+
+.botones{
+
+    margin: 10%;
+    display: flex;
+}
+
+.boton-editar{
+
+}
+
+.boton-eliminar{
+    margin-right: 10px;
+}
+
+.title{
+    background-color: rgb(30, 30, 30);
+    border-radius: 20px;
+    
+    p{
+        
+    }
+}
+
+

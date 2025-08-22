@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
+
   
   const router = inject(Router);
   let sesion =  localStorage.getItem("Sesion")
@@ -13,5 +14,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     localStorage.clear();
     return false;
    }
-  
+
 };
+
+

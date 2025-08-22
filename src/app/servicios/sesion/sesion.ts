@@ -6,9 +6,14 @@ import { Observable } from 'rxjs';
 })
 export class Sesion {
 
+  estalogueado :Boolean = false
+
   setSesion(Usuariosesion: {Email:string,sesion:string,id:number}){
       localStorage.setItem("Email",Usuariosesion.Email)
       localStorage.setItem("Sesion",Usuariosesion.sesion)
+      if (Usuariosesion.sesion === "true") {
+        this.estalogueado = true
+      }
        let usuarioid = Usuariosesion.id.toString();
       localStorage.setItem("Id",usuarioid)
   }
@@ -17,6 +22,10 @@ export class Sesion {
     localStorage.removeItem("Email")
     localStorage.removeItem("Sesion")
     localStorage.removeItem("Id")
+  }
+
+  estaAutenticado(){
+    return this.estalogueado || localStorage.getItem('Sesion') === 'true';
   }
   
 }

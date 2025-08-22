@@ -1,0 +1,35 @@
+<p-dialog [(visible)]="visible" [modal]="true" [closable]="true" [header]="titulo">
+      <form [formGroup]="form" (ngSubmit)="guardar()">
+        <div class="p-fluid" *ngIf="titulo.toLocaleLowerCase() != 'eliminar tarea'">
+          <div style="margin: 2%;" class="Id">
+                <label style="margin: 20%; justify-content: center;" for="username" class="font-semibold w-24">{{"Id" | titlecase}}</label>
+                <input pInputText id="username" formControlName="id" [disabled]="true" />
+
+            </div>
+            <div style="margin: 2%;" class="titulo">
+                <label for="username" style="margin: 20%; justify-content: center;" class="font-semibold w-24">{{"titulo de tarea" | titlecase}}</label>
+                <input pInputText id="username"  class="flex-auto" formControlName="title" autocomplete="off" />
+            </div>
+            <div *ngIf="titulo.toLocaleLowerCase() != 'nueva tarea'" style="margin: 10%; margin-left: 130px; " class="flex items-center">
+              <p-checkbox inputId="Completado" [disabled]="false" name="Completado" formControlName="completed" [value]="false"  [binary]="true"/>
+              <label for="Completado" class="ml-2"> Completado </label>
+            </div>
+            <div *ngIf="titulo.toLocaleLowerCase() === 'nueva tarea'" style="margin: 10%; margin-left: 130px; " class="flex items-center">
+              <p-checkbox inputId="Completado" [disabled]="true" name="Completado" formControlName="completed" [value]="false"  [binary]="true"/>
+              <label for="Completado" class="ml-2"> Completado </label>
+            </div>
+        </div>
+
+        <div class="p-fluid" *ngIf="titulo.toLocaleLowerCase() === 'eliminar tarea'">
+          <div style="margin: 2%;" class="Id">
+                <label  for="username" class="font-semibold w-24">{{"estas seguro de eliminar esta tarea" | titlecase}}</label>
+          </div>
+        </div>
+
+        <div  class="flex justify-end gap-2 mt-4">
+          <button pButton type="button" label="Cancelar" class="p-button-text" (click)="cerrar()"></button>
+          <button *ngIf="titulo.toLocaleLowerCase() != 'eliminar tarea'" pButton type="submit" label="Guardar"  (click)="guardar()" [disabled]="form.invalid"></button>
+          <button *ngIf="titulo.toLocaleLowerCase() === 'eliminar tarea'" pButton type="submit" label="Eliminar" (click)="eliminar()"></button>
+        </div>
+      </form>
+    </p-dialog>
