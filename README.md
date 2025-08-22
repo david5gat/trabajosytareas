@@ -13,9 +13,11 @@ Primero descargaremos las librerías y maquetadores de estilos.
 
 ```bash
 npm i --force
+```
 Para iniciar un servidor local de desarrollo, ejecutar:
-
+```bash
 ng serve -o
+```
 
 Esto abrirá automáticamente el proyecto en el navegador.
 
