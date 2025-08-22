@@ -14,12 +14,25 @@ Primero descargaremos las librerías y maquetadores de estilos.
 ```bash
 npm i --force
 ```
+o
+
+```bash
+npm i --force
+```
+
+
 Para iniciar un servidor local de desarrollo, ejecutar:
 ```bash
 ng serve -o
 ```
 
-Esto abrirá automáticamente el proyecto en el navegador.
+Esto abrirá automáticamente el proyecto en el navegador
+
+o
+```bash
+ng serve 
+```
+
 
 Es necesario iniciar con un correo.
 
@@ -29,14 +42,13 @@ https://jsonplaceholder.typicode.com/users
 
 También puedes usar los siguientes:
 
-Sincere@april.biz
+- Sincere@april.biz
+- Shanna@melissa.tv
 
-Shanna@melissa.tv
+👉 Funcionalidades principales
 
-Funcionalidades principales
+- Visualizar los módulos donde aparecen las tareas registradas.
 
-Visualizar los módulos donde aparecen las tareas registradas.
+- En cada módulo se pueden editar y eliminar tareas.
 
-En cada módulo se pueden editar y eliminar tareas.
-
-El primer módulo visible sirve para crear una nueva tarea.
+- El primer módulo visible sirve para crear una nueva tarea.
